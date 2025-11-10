@@ -157,12 +157,20 @@
       50% { filter: drop-shadow(0 0 8px var(--accent)); }
     }
 
+    @keyframes mailFlap {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
     a.button:hover svg { animation: iconGlow 1.4s ease-in-out infinite; }
+    a.button:hover.mail svg polyline { animation: mailFlap 0.8s ease-in-out infinite; }
+
     a.button:hover {
       background: rgba(255,255,255,0.75);
       transform: translateY(-3px);
       box-shadow: 0 0 15px rgba(255,105,180,0.25);
     }
+
     a.button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 4px;
@@ -262,8 +270,12 @@
           Call
         </a>
 
-        <a class="button" href="mailto:morgan.lamson@yahoo.com" aria-label="Email Morgan Lamson">
-          <svg viewBox="0 0 24 24"><path d="M22 6l-10 7L2 6"/></svg>
+        <!-- ✅ Fixed Email SVG -->
+        <a class="button mail" href="mailto:morgan.lamson@yahoo.com" aria-label="Email Morgan Lamson">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+            <polyline points="3,7 12,13 21,7"></polyline>
+          </svg>
           Email
         </a>
 
