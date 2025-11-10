@@ -56,6 +56,37 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* --- Alignment Normalizer --- */
+    :root {
+      --card-width: 420px;
+      --card-padding: 2.5rem;
+      --avatar-size: 150px;
+      --h1-size: 1.8rem;
+      --h2-size: 1.1rem;
+      --p-size: 0.95rem;
+    }
+
+    body, h1, h2, p {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+      line-height: 1.15;
+    }
+
+    .card {
+      width: var(--card-width);
+      padding: var(--card-padding);
+      box-sizing: border-box;
+      outline: 1px solid transparent;
+      aspect-ratio: 3 / 5;
+    }
+
+    .avatar {
+      width: var(--avatar-size);
+      height: var(--avatar-size);
+      margin: 0 auto 0.75rem;
+    }
+
     main {
       display: flex;
       align-items: center;
@@ -70,14 +101,20 @@
       backdrop-filter: blur(var(--blur));
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 2.5rem;
-      width: 90%;
-      max-width: 420px;
       text-align: center;
       overflow: hidden;
       box-shadow: 0 0 40px rgba(255,105,180,0.2);
       will-change: transform;
       transform-style: preserve-3d;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255,105,180,0.2);
+      pointer-events: none;
     }
 
     .card video {
@@ -95,12 +132,6 @@
       z-index: 1;
     }
 
-    .avatar {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 0.75rem;
-    }
-
     .avatar img {
       width: 100%;
       height: 100%;
@@ -112,7 +143,7 @@
 
     h1 {
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: var(--h1-size);
       color: #111;
       margin-bottom: 0.2rem;
       letter-spacing: 0.02em;
@@ -120,13 +151,13 @@
 
     h2 {
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: var(--h2-size);
       color: var(--accent);
       margin-bottom: 0.5rem;
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: var(--p-size);
       color: rgba(50,50,50,0.7);
       margin-bottom: 1.5rem;
     }
@@ -240,9 +271,9 @@
     footer a:hover { color: #000; }
 
     @media (max-width: 480px) {
-      .avatar { width: 150px; height: 150px; }
-      .card { padding: 2.5rem; }
-      h1 { font-size: 1.8rem; }
+      .avatar { width: var(--avatar-size); height: var(--avatar-size); }
+      .card { padding: var(--card-padding); }
+      h1 { font-size: var(--h1-size); }
     }
 
     @media (prefers-contrast: more) {
@@ -317,7 +348,6 @@
     const card = document.getElementById('card');
     let timeout;
 
-    // Tilt effect (performance throttled)
     document.addEventListener('mousemove', e => {
       if (timeout) return;
       timeout = setTimeout(() => {
@@ -333,10 +363,8 @@
       card.style.transform = 'rotateY(0deg) rotateX(0deg)';
     }, { passive: true });
 
-    // NFC toast detection
     window.addEventListener('DOMContentLoaded', async () => {
       const toast = document.getElementById('nfc-toast');
-
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('nfc')) showNfcToast();
 
