@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="Morgan Headshot M1 Small.jpg">
 
-  <!-- 💖 FAVICON (Pink background, white ML text) -->
+  <!-- 💖 FAVICON -->
   <link rel="icon" type="image/svg+xml"
     href='data:image/svg+xml;utf8,
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
@@ -114,8 +114,8 @@
       font-weight: 700;
       font-size: 1.8rem;
       color: #111;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.02em;
     }
 
     h2 {
@@ -188,7 +188,6 @@
       outline-offset: 4px;
     }
 
-    /* NFC Toast */
     #nfc-toast {
       display: none;
       position: fixed;
@@ -241,9 +240,9 @@
     footer a:hover { color: #000; }
 
     @media (max-width: 480px) {
-      .avatar { width: 110px; height: 110px; }
-      .card { padding: 1.5rem; }
-      h1 { font-size: 1.5rem; }
+      .avatar { width: 150px; height: 150px; }
+      .card { padding: 2.5rem; }
+      h1 { font-size: 1.8rem; }
     }
 
     @media (prefers-contrast: more) {
@@ -318,7 +317,7 @@
     const card = document.getElementById('card');
     let timeout;
 
-    // Interactive tilt effect (throttled for performance)
+    // Tilt effect (performance throttled)
     document.addEventListener('mousemove', e => {
       if (timeout) return;
       timeout = setTimeout(() => {
@@ -334,7 +333,7 @@
       card.style.transform = 'rotateY(0deg) rotateX(0deg)';
     }, { passive: true });
 
-    // NFC detection toast
+    // NFC toast detection
     window.addEventListener('DOMContentLoaded', async () => {
       const toast = document.getElementById('nfc-toast');
 
