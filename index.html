@@ -5,12 +5,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Digital business card for Morgan Lamson, CFO & Founder at Hueco House, Port St. Lucie FL." />
+  <meta name="keywords" content="Morgan Lamson, Hueco House, business card, creative director, Port St. Lucie, marketing, web design" />
+  <meta name="author" content="Hueco House" />
   <meta name="theme-color" content="#ff69b4" />
   <title>Morgan Lamson | CFO | Founder at Hueco House</title>
 
   <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="Morgan Headshot M1 Small.jpg">
+
+  <!-- 💖 FAVICON (Pink background, white ML text) -->
+  <link rel="icon" type="image/svg+xml"
+    href='data:image/svg+xml;utf8,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="64" fill="%23ff69b4"/>
+      <text x="50%" y="56%" text-anchor="middle" dominant-baseline="middle"
+            fill="white" font-family="Inter, sans-serif" font-weight="700"
+            font-size="56">ML</text>
+    </svg>'>
 
   <!-- STYLES -->
   <style>
@@ -270,7 +282,6 @@
           Call
         </a>
 
-        <!-- ✅ Fixed Email SVG -->
         <a class="button mail" href="mailto:morgan.lamson@yahoo.com" aria-label="Email Morgan Lamson">
           <svg viewBox="0 0 24 24">
             <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
@@ -307,7 +318,7 @@
     const card = document.getElementById('card');
     let timeout;
 
-    // Interactive tilt effect
+    // Interactive tilt effect (throttled for performance)
     document.addEventListener('mousemove', e => {
       if (timeout) return;
       timeout = setTimeout(() => {
